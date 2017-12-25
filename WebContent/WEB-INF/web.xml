@@ -1,0 +1,82 @@
+<web-app>
+	<servlet>
+		<servlet-name>broken_Servlet</servlet-name>
+		<servlet-class>broken_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>broken_Servlet</servlet-name>
+		<url-pattern>/broken_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>revert_Servlet</servlet-name>
+		<servlet-class>revert_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>revert_Servlet</servlet-name>
+		<url-pattern>/revert_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>search_Servlet</servlet-name>
+		<servlet-class>search_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>search_Servlet</servlet-name>
+		<url-pattern>/search_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>repair_Servlet</servlet-name>
+		<servlet-class>repair_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>repair_Servlet</servlet-name>
+		<url-pattern>/repair_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>show_Servlet</servlet-name>
+		<servlet-class>show_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>show_Servlet</servlet-name>
+		<url-pattern>/show_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>purchase_Servlet</servlet-name>
+		<servlet-class>purchase_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>purchase_Servlet</servlet-name>
+		<url-pattern>/purchase_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>lend_Servlet</servlet-name>
+		<servlet-class>lend_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>lend_Servlet</servlet-name>
+		<url-pattern>/lend_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>useless_Servlet</servlet-name>
+		<servlet-class>useless_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>useless_Servlet</servlet-name>
+		<url-pattern>/useless_Servlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>modify_Servlet</servlet-name>
+		<servlet-class>modify_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>modify_Servlet</servlet-name>
+		<url-pattern>/modify_Servlet</url-pattern>
+	</servlet-mapping>
+</web-app>
