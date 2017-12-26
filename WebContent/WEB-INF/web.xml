@@ -1,20 +1,92 @@
 <web-app>
 	<servlet>
-		<servlet-name>broken_Servlet</servlet-name>
-		<servlet-class>broken_Servlet</servlet-class>
+		<servlet-name>add_Servlet</servlet-name>
+		<servlet-class>add_Servlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>broken_Servlet</servlet-name>
-		<url-pattern>/broken_Servlet</url-pattern>
+		<servlet-name>add_Servlet</servlet-name>
+		<url-pattern>/add_Servlet</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>revert_Servlet</servlet-name>
-		<servlet-class>revert_Servlet</servlet-class>
+		<servlet-name>express_Servlet</servlet-name>
+		<servlet-class>express_Servlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>revert_Servlet</servlet-name>
-		<url-pattern>/revert_Servlet</url-pattern>
+		<servlet-name>express_Servlet</servlet-name>
+		<url-pattern>/express_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>login_Servlet</servlet-name>
+		<servlet-class>login_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>login_Servlet</servlet-name>
+		<url-pattern>/login_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>logout_Servlet</servlet-name>
+		<servlet-class>logout_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logout_Servlet</servlet-name>
+		<url-pattern>/logout_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>modifyidea_Servlet</servlet-name>
+		<servlet-class>modifyidea_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>modifyidea_Servlet</servlet-name>
+		<url-pattern>/modifyidea_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>modifypwd_Servlet</servlet-name>
+		<servlet-class>modifypwd_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>modifypwd_Servlet</servlet-name>
+		<url-pattern>/modifypwd_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>order_Servlet</servlet-name>
+		<servlet-class>order_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>order_Servlet</servlet-name>
+		<url-pattern>/order_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>payed_Servlet</servlet-name>
+		<servlet-class>payed_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>payed_Servlet</servlet-name>
+		<url-pattern>/payed_Servlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>purchase_Servlet</servlet-name>
+		<servlet-class>purchase_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>purchase_Servlet</servlet-name>
+		<url-pattern>/purchase_Servlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>register_Servlet</servlet-name>
+		<servlet-class>register_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>register_Servlet</servlet-name>
+		<url-pattern>/register_Servlet</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -27,56 +99,20 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>repair_Servlet</servlet-name>
-		<servlet-class>repair_Servlet</servlet-class>
+		<servlet-name>trolley_Servlet</servlet-name>
+		<servlet-class>trolley_Servlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>repair_Servlet</servlet-name>
-		<url-pattern>/repair_Servlet</url-pattern>
+		<servlet-name>trolley_Servlet</servlet-name>
+		<url-pattern>/trolley_Servlet</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>show_Servlet</servlet-name>
-		<servlet-class>show_Servlet</servlet-class>
+		<servlet-name>user_Servlet</servlet-name>
+		<servlet-class>user_Servlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>show_Servlet</servlet-name>
-		<url-pattern>/show_Servlet</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>purchase_Servlet</servlet-name>
-		<servlet-class>purchase_Servlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>purchase_Servlet</servlet-name>
-		<url-pattern>/purchase_Servlet</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>lend_Servlet</servlet-name>
-		<servlet-class>lend_Servlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>lend_Servlet</servlet-name>
-		<url-pattern>/lend_Servlet</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>useless_Servlet</servlet-name>
-		<servlet-class>useless_Servlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>useless_Servlet</servlet-name>
-		<url-pattern>/useless_Servlet</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>modify_Servlet</servlet-name>
-		<servlet-class>modify_Servlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>modify_Servlet</servlet-name>
-		<url-pattern>/modify_Servlet</url-pattern>
+		<servlet-name>user_Servlet</servlet-name>
+		<url-pattern>/user_Servlet</url-pattern>
 	</servlet-mapping>
 </web-app>
