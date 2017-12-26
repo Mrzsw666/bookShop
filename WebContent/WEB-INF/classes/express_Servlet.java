@@ -62,7 +62,6 @@ public class express_Servlet extends HttpServlet{
 			}
 			express_Bean.setTableRecord(tableRecord);
 			con.close();
-			RequestDispatcher dispatcher=request.getRequestDispatcher("express.jsp");
 			dispatcher.forward(request,response);
 		}
 		catch(SQLException ee){
