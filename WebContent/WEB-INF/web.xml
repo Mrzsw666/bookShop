@@ -1,11 +1,11 @@
 <web-app>
 	<servlet>
-		<servlet-name>add_Servlet</servlet-name>
-		<servlet-class>add_Servlet</servlet-class>
+		<servlet-name>alter_Servlet</servlet-name>
+		<servlet-class>alter_Servlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>add_Servlet</servlet-name>
-		<url-pattern>/add_Servlet</url-pattern>
+		<servlet-name>alter_Servlet</servlet-name>
+		<url-pattern>/alter_Servlet</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

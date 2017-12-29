@@ -23,7 +23,10 @@ public class login_Servlet extends HttpServlet{
 		try{
 		String UserName=request.getParameter("UserName");
 		String Pwd=request.getParameter("Password");
+		System.out.println(UserName);
+		System.out.println(Pwd);
 		String Password=getMD5(Pwd);
+		//String Password=Pwd;
 		String dataBase="bookshop";
 		String tableName="user";
 		if(UserName==null||UserName.length()==0||Pwd==null||Pwd.length()==0){
@@ -34,8 +37,10 @@ public class login_Servlet extends HttpServlet{
 		PreparedStatement sql;
 	    String url="jdbc:mysql://127.0.0.1/"+dataBase+"?"+"user=root&password=123456&characterEncoding=utf8&useSSL=true";
 		con=DriverManager.getConnection(url);
-		sql=con.prepareStatement("SELECT * FROM "+tableName+" WHERE username='"+UserName+" and password="+Password+"'");
+		System.out.println("SELECT * FROM "+tableName+" WHERE username='"+UserName+"' and password='"+Password+"'");
+		sql=con.prepareStatement("SELECT * FROM "+tableName+" WHERE username='"+UserName+"' and password='"+Password+"'");
 		rs=sql.executeQuery();
+		rs.last();
 		int row=rs.getRow();
 		String idea;
 		if(row==0){
@@ -44,9 +49,10 @@ public class login_Servlet extends HttpServlet{
 			idea="µÇÂ¼³É¹¦";
 		
 		tableName="login";
-		String is=rs.getString(7);
+		rs.first();
+		String is=rs.getString(8);
 		int isSuper=Integer.parseInt(is);
-		String condition="INSERT INTO "+tableName+" VALUES"+"("+UserName+","+isSuper+")";
+		String condition="INSERT INTO "+tableName+" VALUES"+"("+"'"+"0"+"','"+UserName+"','"+isSuper+"',"+null+","+null+","+null+")";
 		Statement sqll=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
 		sqll.executeUpdate(condition);
 		login_Bean.setResult(idea);

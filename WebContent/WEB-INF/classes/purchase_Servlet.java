@@ -11,8 +11,9 @@ public class purchase_Servlet extends HttpServlet{
 		catch(Exception e){}
 	}
 	public void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+		System.out.println("damn");
 		book_Bean purchase_Bean=null;
-		RequestDispatcher dispatcher=request.getRequestDispatcher("purchase.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("introduce.jsp");
 		try{
 			purchase_Bean=(book_Bean)request.getAttribute("purchase_Bean");
 			if(purchase_Bean==null){
@@ -24,15 +25,17 @@ public class purchase_Servlet extends HttpServlet{
 			purchase_Bean=new book_Bean();
 			request.setAttribute("purchase_Bean",purchase_Bean);
 		}
-		request.setCharacterEncoding("gb2312");
+		request.setCharacterEncoding("utf-8");
 		String dataBase="bookshop";
 		String tableName="book";
-		String tableNameA="order";
+		String tableNameA="bill";
 		String ur=request.getParameter("user");
 		String be=request.getParameter("bookname");
 		String at=request.getParameter("amount");
 		String ct=request.getParameter("cost");
 		String ix=request.getParameter("index");
+		System.out.println(ur);
+		int id=1;
 		int a=Integer.parseInt(ix);
 		float c=Float.parseFloat(ct);
 		int b=Integer.parseInt(at);
@@ -42,11 +45,11 @@ public class purchase_Servlet extends HttpServlet{
 			return;
 		}
 	
-		String condition="SELECT*FROM "+tableName+" WHERE index = "+a;
+		String condition="SELECT*FROM "+tableName+" WHERE bookkey= "+a;
 		Connection con;
-		
+		System.out.println(condition);
 		try{
-			String uri="jdbc:mysql://127.0.0.1/"+dataBase+"?"+"user=root&password=123456&characterEncoding=utf8&useSSL=true";			
+			String uri="jdbc:mysql://127.0.0.1/"+dataBase+"?"+"user=root&password=123456&characterEncoding=utf-8&useSSL=true";			
 			con=DriverManager.getConnection(uri);
 			Statement sql=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs=sql.executeQuery(condition);
@@ -61,8 +64,10 @@ public class purchase_Servlet extends HttpServlet{
 			else{
 				na=na-b;
 				float tc=b*c;
-				sql.executeUpdate("UPDATE "+tableName+" SET amount = "+na+" WHERE user = "+"'"+ur+"'"+" and index ="+c);
-				sql.executeUpdate("INSERT INTO "+tableNameA+" VALUES"+"("+"'"+ur+"','"+be+"',"+a+","+tc+","+b+")");}
+				System.out.println("ddccd");
+				sql.executeUpdate("UPDATE "+tableName+" SET amount = "+na+" WHERE bookkey ="+c);
+				System.out.println("dddd");
+				sql.executeUpdate("INSERT INTO "+tableNameA+" VALUES"+"("+id+",'"+ur+"','"+be+"',"+b+","+tc+","+a+")");}
 			con.close();
 			purchase_Bean.setResult("¹ºÂò³É¹¦£¡");
 			dispatcher.forward(request,response);

@@ -2,11 +2,18 @@ package mybean;
 public class book_Bean {
 	String []columnName;
 	String [][]tableRecord=null;
+	int bookNumber;
 	String result;
 	int id;
 	int pageSize=1;
 	int totalPages=1;
 	int currentPage=1;
+	public void setBookNumber(int i){
+		bookNumber=i;
+	}
+	public int getBookNumber(){
+		return bookNumber;
+	}
 	public void setTableRecord(String [][]s){
 		tableRecord=s;
 	}

@@ -23,6 +23,10 @@ public class modifypwd_Servlet extends HttpServlet{
 		try{
 		String pwd1=request.getParameter("Password1");
 		String pwd2=request.getParameter("Password2");
+		String pwd3=request.getParameter("Password3");
+		if(!pwd2.equals(pwd3)){
+			throw new Exception("新密码不一致");
+		}
 		String dataBase="bookshop";
 		String tableName="login";
 		String password1=getMD5(pwd1);
@@ -34,15 +38,19 @@ public class modifypwd_Servlet extends HttpServlet{
 		con=DriverManager.getConnection(url);
 		sql=con.prepareStatement("SELECT * FROM "+tableName);
 		rs=sql.executeQuery();
-		String userName=rs.getString(1);
+		rs.first();
+		String userName=rs.getString(2);
 		tableName="user";
-		sql=con.prepareStatement("SELECT * FROM "+tableName+" WHERE password="+password1+" and username="+userName);
+		System.out.println(password1);
+		System.out.println(password2);
+		sql=con.prepareStatement("SELECT * FROM "+tableName+" WHERE password='"+password1+"' and username='"+userName+"'");
 		rs=sql.executeQuery();
+		rs.last();
 		int row=rs.getRow();
 		if(row==0){
 			throw new Exception("原密码错误");
 		}else{
-		sql=con.prepareStatement("UPDATE user SET password='"+password2+" where userName="+userName);
+		sql=con.prepareStatement("UPDATE user SET password='"+password2+"' where userName='"+userName+"'");
 		sql.executeUpdate();
 		String idea="密码修改成功";
 		modifypwd_Bean.setResult(idea);
@@ -52,11 +60,11 @@ public class modifypwd_Servlet extends HttpServlet{
 		   System.out.println(e);
 		   String idea=e.toString();
 		   modifypwd_Bean.setResult(idea);
-		   RequestDispatcher dispatcher=request.getRequestDispatcher("modify_password.jsp");
+		   RequestDispatcher dispatcher=request.getRequestDispatcher("modify_pwd.jsp");
 			dispatcher.forward(request,response);
 		   return ;
 		}
-		RequestDispatcher dispatcher=request.getRequestDispatcher("modify_password.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("modify_pwd.jsp");
 		dispatcher.forward(request,response);
 		
 	}

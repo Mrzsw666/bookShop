@@ -24,7 +24,7 @@ public class express_Servlet extends HttpServlet{
 			express_Bean=new book_Bean();
 			request.setAttribute("express_Bean",express_Bean);
 		}
-		request.setCharacterEncoding("gb2312");
+		request.setCharacterEncoding("utf-8");
 		String dataBase="bookshop";
 		String tableName="order";
 		String ur=request.getParameter("user");
@@ -38,7 +38,7 @@ public class express_Servlet extends HttpServlet{
 		Connection con;
 		
 		try{
-			String uri="jdbc:mysql://127.0.0.1/"+dataBase+"?"+"user=root&password=123456&characterEncoding=utf8&useSSL=true";			
+			String uri="jdbc:mysql://127.0.0.1/"+dataBase+"?"+"user=root&password=123456&characterEncoding=utf-8&useSSL=true";			
 			con=DriverManager.getConnection(uri);
 			Statement sql=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs=sql.executeQuery(condition);

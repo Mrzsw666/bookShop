@@ -24,13 +24,13 @@ public class modifyidea_Servlet extends HttpServlet{
 		String Email=request.getParameter("Email");
 		String Ph=request.getParameter("Phone");
 		String Address=request.getParameter("Address");
-        int Phone=Integer.parseInt(Ph);
+        long Phone=Long.parseLong(Ph);
 		String dataBase="bookshop";
 		String tableName="login";
 		if(Email.matches("[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+){0,4}@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+){0,4}$")==false){
 			throw new Exception("您的邮箱输入有误");
 		}
-		if(P.matches("0\\d{2,3}\\d{7,8}$|^1[358]\\d{9}$|^147\\d{8}")==false){
+		if(Ph.matches("0\\d{2,3}\\d{7,8}$|^1[358]\\d{9}$|^147\\d{8}")==false){
 			throw new Exception("你的电话输入有误");
 		}
 		ResultSet rs;
@@ -40,8 +40,9 @@ public class modifyidea_Servlet extends HttpServlet{
 		con=DriverManager.getConnection(url);
 		sql=con.prepareStatement("SELECT * FROM "+tableName);
 		rs=sql.executeQuery();
-		String userName=rs.getString(1);
-		sql=con.prepareStatement("UPDATE user SET email='"+Email+"',"+"phone='"+Phone+"',"+"address='"+Address+" where userName="+userName);
+		rs.first();
+		String userName=rs.getString(2);
+		sql=con.prepareStatement("UPDATE user SET email='"+Email+"',"+"phone="+Phone+","+"address='"+Address+"' where userName='"+userName+"'");
 		sql.executeUpdate();
 		String idea="修改成功";
 		modifyidea_Bean.setResult(idea);

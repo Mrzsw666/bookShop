@@ -14,19 +14,25 @@ public class logout_Servlet extends HttpServlet{
 	public void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException ,IOException{
 		try{
 		request.setCharacterEncoding("utf8");
+		String weburl=request.getParameter("web");
+		System.out.println(weburl);
+		System.out.println("1");
 		Connection con;
 		PreparedStatement sql;
-		String dataBase="Device";
+		String dataBase="bookshop";
 		String url="jdbc:mysql://127.0.0.1/"+dataBase+"?"+"user=root&password=123456&characterEncoding=utf8&useSSL=true";
 		con=DriverManager.getConnection(url);
+		System.out.println("2");
 		String sqlstr="delete from login;";
+		System.out.println("3");
 		sql=con.prepareStatement(sqlstr);
 		sql.executeUpdate();
-		RequestDispatcher dispatcher=request.getRequestDispatcher("logout.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher(weburl);
 		dispatcher.forward(request,response);
-		
 	}catch(Exception e){
-		RequestDispatcher dispatcher=request.getRequestDispatcher("logout.jsp");
+		String weburl=request.getParameter("web");  
+		System.out.println(e.toString());
+		RequestDispatcher dispatcher=request.getRequestDispatcher(weburl);
 		dispatcher.forward(request,response);
 	}
 	}
