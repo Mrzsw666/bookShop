@@ -14,7 +14,7 @@
      #empty{height: 15px;}
      #main{margin: 0px auto;min-height: 410px;width: 1000px;}
      #title{height: 20px;line-height: 20px;}
-     div#title li{float: left;text-decoration: none;list-style:none;font-size: 15px;background-color: green;margin: 0px 8px;}
+     div#title li{float: left;text-decoration: none;list-style:none;font-size: 15px;background-color: white;margin: 0px 8px;}
      div.goods{display: inline-block;width: 1000px;}
      div.goods li{float: left;text-decoration: none;list-style:none;font-size: 20px;height: 100px;line-height: 100px; background-color: white;margin: 0px 8px;font-family: "Adobe Gothic Heiti Std B";}
      #down{height: 100px;}
@@ -30,6 +30,7 @@
  		<ul style="background-color:black">		
  			<li><a href="modify_idea.jsp">我的信息</a></li>
  			<li><a href="trolley.jsp">我的购物车</a></li>
+ 		    <li><a href="modify_pwd.jsp">修改密码</a></li>
             <li>
                 
                 <%
@@ -50,9 +51,16 @@
 <% } %>
                 
                 <a href="modify_idea.jsp"><%=username %></a>
-                   <form action="express_Servlet" method=post>
+                <%
+                if(request.getAttribute("express_Bean")==null){
+                  %>
+                <form action="express_Servlet" method="post">
                  <input type="hidden" name="user" value="<%=username %>">  
                 </form>
+                <jsp:forward page="express_Servlet">
+                        <jsp:param name="user" value="<%=username %>"></jsp:param>
+                  </jsp:forward> 
+                  <% } %>
             </li>
  			<li><a href="#">您好，</a></li>
  		</ul>
@@ -86,22 +94,25 @@
  			 } 
  			for(int i=0;i<num;i++){
  		%>        
-        <div class="goods">
+        <div id="a<%=i %>" class="goods" style="display:bolck;">
             <ul>
-                <li style="width:500px;"><%=book[i][5] %></li>
-                <li style="width:100px;color:red;.10"><%=book[i][2] %></li>
-                <li style="width:100px;">
-                    <%=book[i][7] %>
-                </li>
                 <%
-                float i7=Float.parseFloat(book[i][7]);
+                float i1=Float.parseFloat(book[i][1]);
                 float i2=Float.parseFloat(book[i][2]);
-                float ian=i2*i7;
+                float ian=i2*i1;
                 %>
+           
+                <li style="width:500px;"><%=book[i][0] %></li>
+                <li style="width:100px;color:red;.10"><%=i2 %></li>
+                <li style="width:100px;">
+                    <%=book[i][1] %>
+                </li>             
            
                 <li style="width:100px;color:red;"><%=ian %></li>
                 <li style="width:120px;">
-                    <input id="delete" type="submit" value="删除" name="delete" style="width:100px;height:40px;font-size:20px;background-color:white;color:black;border:none;">
+                    <input id="delete" type="button" value="删除" name="delete" 
+                    onclick = "document.getElementById('a<%=i %>').style.display='none';
+                    style="width:100px;height:40px;font-size:20px;background-color:white;color:black;border:none;">
                 </li>
             </ul>
         </div>

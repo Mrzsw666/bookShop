@@ -41,8 +41,9 @@ public class modifyidea_Servlet extends HttpServlet{
 		sql=con.prepareStatement("SELECT * FROM "+tableName);
 		rs=sql.executeQuery();
 		rs.first();
-		String userName=rs.getString(2);
-		sql=con.prepareStatement("UPDATE user SET email='"+Email+"',"+"phone="+Phone+","+"address='"+Address+"' where userName='"+userName+"'");
+		String id = rs.getString(2);
+		int user_id=Integer.parseInt(id);
+		sql=con.prepareStatement("UPDATE user SET email='"+Email+"',"+"phone="+Phone+","+"address='"+Address+"' where id="+user_id);
 		sql.executeUpdate();
 		String idea="ÐÞ¸Ä³É¹¦";
 		modifyidea_Bean.setResult(idea);

@@ -34,29 +34,29 @@ public class register_Servlet extends HttpServlet{
 		System.out.println(Email);
 		System.out.println(P);
 		if(!Pwd1.equals(Pwd2)){
-			throw new Exception("Á½´ÎÊäÈëÃÜÂë²»Ò»ÖÂ");
+			throw new Exception("ä¸¤æ¬¡å¯†ç ä¸ä¸€è‡´");
 		}
 		String Password=getMD5(Pwd1);
 		String dataBase="bookshop";
 		String tableName="user";
 		System.out.println("111");
 		if(UserName.matches("^[A-Za-z0-9]+$")==false){
-		    throw new Exception("ÓÃ»§Ãû¸ñÊ½´íÎó");
+		    throw new Exception("ç”¨æˆ·åæ ¼å¼é”™è¯¯");
 		}
 		if(Email.matches("^[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+){0,4}@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+){0,4}$")==false){
-			throw new Exception("ÄúÊäÈëµÄÓÊÏäÓĞÎó");
+			throw new Exception("é‚®ç®±æ ¼å¼é”™è¯¯");
 		}
 		if(P.matches("^0\\d{2,3}\\d{7,8}$|^1[358]\\d{9}$|^147\\d{8}")==false){
-			throw new Exception("ÄãÊäÈëµÄµç»°ÓĞÎó");
+			throw new Exception("ç”µè¯æ ¼å¼é”™è¯¯");
 		}
 		System.out.println("222");
 		int isSuper = 0;
 		long Phone=Long.parseLong(P);
 		if(UserName==null||UserName.length()==0||Pwd1==null||Pwd1.length()==0||Pwd2==null||Pwd2.length()==0||Address==null||Address.length()==0||Email==null||Email.length()==0||P==null||P.length()==0){
-			throw new Exception("ÄúÊäÈëµÄĞÅÏ¢²»ÍêÕû");
+			throw new Exception("æ‚¨å¡«å†™çš„ä¿¡æ¯ä¸å®Œæ•´");
 		}
 		System.out.println("yyy");
-		String condition="INSERT INTO "+tableName+" VALUES"+"("+"0"+",'"+UserName+"','"+Password+"','"+Email+"',"+Phone+",'"+Address+"',"+null+","+isSuper+")";
+		String condition="INSERT INTO "+tableName+" VALUES"+"("+"0"+",'"+UserName+"','"+Password+"','"+Email+"',"+Phone+",'"+Address+"',"+isSuper+")";
 		System.out.println(condition);
 		Connection con;
 	    String url="jdbc:mysql://127.0.0.1/"+dataBase+"?"+"user=root&password=123456&characterEncoding=utf-8&useSSL=true";
@@ -65,11 +65,11 @@ public class register_Servlet extends HttpServlet{
 		ResultSet rs=sqll.executeQuery();
 		rs.last();
 		if(rs.getRow()!=0){
-			throw new Exception("ÓÃ»§ÃûÒÑ´æÔÚ");
+			throw new Exception("ç”¨æˆ·åå·²å­˜åœ¨");
 		}
 		Statement sql=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
 		sql.executeUpdate(condition);
-		String idea="×¢²á³É¹¦";
+		String idea="æ³¨å†ŒæˆåŠŸ";
 		register_Bean.setResult(idea);
 		}
 		catch(Exception e){

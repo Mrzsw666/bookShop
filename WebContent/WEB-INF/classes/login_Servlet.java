@@ -23,8 +23,6 @@ public class login_Servlet extends HttpServlet{
 		try{
 		String UserName=request.getParameter("UserName");
 		String Pwd=request.getParameter("Password");
-		System.out.println(UserName);
-		System.out.println(Pwd);
 		String Password=getMD5(Pwd);
 		//String Password=Pwd;
 		String dataBase="bookshop";
@@ -37,7 +35,6 @@ public class login_Servlet extends HttpServlet{
 		PreparedStatement sql;
 	    String url="jdbc:mysql://127.0.0.1/"+dataBase+"?"+"user=root&password=123456&characterEncoding=utf8&useSSL=true";
 		con=DriverManager.getConnection(url);
-		System.out.println("SELECT * FROM "+tableName+" WHERE username='"+UserName+"' and password='"+Password+"'");
 		sql=con.prepareStatement("SELECT * FROM "+tableName+" WHERE username='"+UserName+"' and password='"+Password+"'");
 		rs=sql.executeQuery();
 		rs.last();
@@ -50,9 +47,9 @@ public class login_Servlet extends HttpServlet{
 		
 		tableName="login";
 		rs.first();
-		String is=rs.getString(8);
-		int isSuper=Integer.parseInt(is);
-		String condition="INSERT INTO "+tableName+" VALUES"+"("+"'"+"0"+"','"+UserName+"','"+isSuper+"',"+null+","+null+","+null+")";
+		String is=rs.getString(1);
+		int id=Integer.parseInt(is);
+		String condition="INSERT INTO "+tableName+" VALUES"+"("+"'"+"0"+"',"+id+")";
 		Statement sqll=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
 		sqll.executeUpdate(condition);
 		login_Bean.setResult(idea);

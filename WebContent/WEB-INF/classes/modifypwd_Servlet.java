@@ -39,18 +39,17 @@ public class modifypwd_Servlet extends HttpServlet{
 		sql=con.prepareStatement("SELECT * FROM "+tableName);
 		rs=sql.executeQuery();
 		rs.first();
-		String userName=rs.getString(2);
+		String id=rs.getString(2);
+		int user_id = Integer.parseInt(id);
 		tableName="user";
-		System.out.println(password1);
-		System.out.println(password2);
-		sql=con.prepareStatement("SELECT * FROM "+tableName+" WHERE password='"+password1+"' and username='"+userName+"'");
+		sql=con.prepareStatement("SELECT * FROM "+tableName+" WHERE password='"+password1+"' and id="+user_id);
 		rs=sql.executeQuery();
 		rs.last();
 		int row=rs.getRow();
 		if(row==0){
 			throw new Exception("原密码错误");
 		}else{
-		sql=con.prepareStatement("UPDATE user SET password='"+password2+"' where userName='"+userName+"'");
+		sql=con.prepareStatement("UPDATE user SET password='"+password2+"' where id="+user_id);
 		sql.executeUpdate();
 		String idea="密码修改成功";
 		modifypwd_Bean.setResult(idea);

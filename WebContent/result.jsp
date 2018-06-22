@@ -3,8 +3,8 @@
  <head>
  	<title>止战之殇图书馆</title>
  	<style type="text/css">
- 	*{padding:0px 0px 0px 0px;}
- 	 #body{width:1000px;margin: 0px auto;text-align: center;padding: 0px 0px;background-color: f8f8f8}
+ 	*{padding:0px;}
+ 	 body{width:1000px;margin: 0px auto;text-align: center;padding: 0px 0px;background-color: f8f8f8}
  	 #top{height: 30px;background-color: e3e4e5;line-height: 30px;text-align: center;} 
  	 div#top li{ float:right; list-style:none; margin: 0px 3px; } 
  	 div#top  a:link{color:999999;text-decoration:none;}
@@ -57,21 +57,22 @@ if(request.getAttribute("users_Bean")==null){
             <li><a href="inf_modify.jsp">我的信息</a></li>
             <li><a href="order.jsp">我的订单</a></li>
             <li><a href="trolley.jsp">我的购物车</a></li>
+            <li><a href="modify_pwd.jsp">修改密码</a></li>
             <li>                
                 <a href="inf_modify.jsp"><%=username %></a>&nbsp
-                 <form action="logout_Servlet" method=post>
-                 <input type="hidden" name="web" value="result.jsp" style="margin:0px;display:inline;">         	   
-        	     <input id="out" type="submit" value="退出" name="out" style="height: 30px;background-color: e3e4e5;line-height: 30px;border:none;">
+                 <form action="logout_Servlet" method="post" style="margin:0px;display:inline;"> 
+                <input type="hidden" name="web" value="main.jsp" style="margin:0px;display:inline;">        	   
+        	     <input id="out" type="submit" value="退出" name="out" style="display:inline-block;color:#999999;font-size:16px;background-color: #e3e4e5;line-height: 30px;border:none;">
                  </form>                
             </li>
             <li><a href="">您好，</a></li>
             <% }else{ %>
             <li><a href="admin.jsp">管理入口</a></li>       
             <li>                
-                <a href=""><%=username %></a>&nbsp
+                <a href="modify_idea.jsp"><%=username %></a>&nbsp
                 <form action="logout_Servlet" method=post> 
                 <input type="hidden" name="web" value="result.jsp">       	   
-        	    <input id="out" type="submit" value="退出" name="out" style="height: 30px;background-color: e3e4e5;line-height: 30px;border:none;">
+                  
                 </form>                
             </li>
             <li><a href="">您好，</a></li>

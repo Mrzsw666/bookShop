@@ -29,10 +29,10 @@ public class payed_Servlet extends HttpServlet{
 		String dataBase="bookshop";
 		String tableNameA="trolley";
 		String tableNameB="book";
-		String tableNameC="order";
+		String tableNameC="bill";
 		String ur=request.getParameter("user");
 		String be=request.getParameter("bookname");
-		String cx=request.getParameter("checkbox");
+		String cx=request.getParameter("amount");
 		int x=Integer.parseInt(cx);
 		int id=0;
 		for(int k=0;k<x;k++){		
@@ -41,11 +41,17 @@ public class payed_Servlet extends HttpServlet{
 			int a=Integer.parseInt(at);
 			int i=Integer.parseInt(ix);			
 			Connection con;
-		
+			String conditionS="SELECT*FROM user WHERE username= "+"'"+ur+"'";
 			try{
 				String uri="jdbc:mysql://127.0.0.1/"+dataBase+"?"+"user=root&password=123456&characterEncoding=utf-8&useSSL=true";			
 				con=DriverManager.getConnection(uri);
 				Statement sql=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+				
+				ResultSet rsS=sql.executeQuery(conditionS);
+				rsS.first();
+				String ur_id=rsS.getString(1);
+				int u_id=Integer.parseInt(ur_id);
+				
 				String condition="SELECT * FROM "+tableNameB+" WHERE bookkey ="+i;
 				ResultSet rs=sql.executeQuery(condition);
 				rs.first();	
@@ -54,7 +60,7 @@ public class payed_Servlet extends HttpServlet{
 				if(a==o){
 					sql.executeUpdate("UPDATE FROM "+tableNameB+" SET amount = "+0+" WHERE bookkey ="+i);}
 				else if(o<a){
-						payed_Bean.setResult("Ê§°Ü£¡¿â´æ²»×ã");
+						payed_Bean.setResult("Ê§ï¿½Ü£ï¿½ï¿½ï¿½æ²»ï¿½ï¿½");
 						dispatcher.forward(request,response);
 						return;}
 				else{
@@ -62,40 +68,40 @@ public class payed_Servlet extends HttpServlet{
 	            	sql.executeUpdate("UPDATE "+tableNameB+" SET amount = "+o+" WHERE bookkey = "+i);
 				}			
 			
-				String conditionB="SELECT*FROM "+tableNameB+" WHERE user = "+"'"+ur+"'"+" and bookkey ="+i;
+				String conditionB="SELECT*FROM "+tableNameA+" WHERE user_id = "+u_id+" and book_bookkey ="+i;
 				ResultSet rsB=sql.executeQuery(conditionB);
 				rsB.first();
-				String amount2=rs.getString(3);
+				String amount2=rs.getString(2);
 				int t=Integer.parseInt(amount2);
-				String costp=rs.getString(4);
+				String costp=rs.getString(3);
 				float cp=Float.parseFloat(costp);
 				float tc=a*cp;
 				float c=cp;
 				if(a==o){
-					sql.executeUpdate("DELETE FROM "+tableNameA+" WHERE user = "+"'"+ur+"'"+" and bookkey ="+i);
-					sql.executeUpdate("INSERT INTO "+tableNameC+" VALUES"+"("+id+"'"+ur+"','"+be+"',"+a+","+c+","+tc+")");}
+					sql.executeUpdate("DELETE FROM "+tableNameA+" WHERE user_id = "+"'"+ur+"'"+" and book_bookkey ="+i);
+					sql.executeUpdate("INSERT INTO "+tableNameC+" VALUES"+"("+id+","+a+","+c+","+i+","+u_id+")");}
 				else if(a==t){
-					sql.executeUpdate("DELETE FROM "+tableNameA+" WHERE user = "+"'"+ur+"'"+" and bookkey ="+i);
-					sql.executeUpdate("INSERT INTO "+tableNameC+" VALUES"+"("+id+"'"+ur+"','"+be+"',"+a+","+c+","+tc+")");}
+					sql.executeUpdate("DELETE FROM "+tableNameA+" WHERE user_id = "+"'"+ur+"'"+" and book_bookkey ="+i);
+					sql.executeUpdate("INSERT INTO "+tableNameC+" VALUES"+"("+id+","+a+","+c+","+i+","+u_id+")");}
 				else if(a>t){
-					sql.executeUpdate("DELETE FROM "+tableNameA+" WHERE user = "+"'"+ur+"'"+" and bookkey ="+i);;
-					sql.executeUpdate("INSERT INTO "+tableNameC+" VALUES"+"("+id+"'"+ur+"','"+be+"',"+a+","+c+","+tc+")");}
+					sql.executeUpdate("DELETE FROM "+tableNameA+" WHERE user_id = "+"'"+ur+"'"+" and book_bookkey ="+i);;
+					sql.executeUpdate("INSERT INTO "+tableNameC+" VALUES"+"("+id+","+a+","+c+","+i+","+u_id+")");}
 				else if(a<t){
 					t=t-a;
 					cp=cp*t;
-					sql.executeUpdate("UPDATE "+tableNameA+" SET amount = "+t+" WHERE user = "+"'"+ur+"'"+" and bookkey ="+i);
-					sql.executeUpdate("UPDATE "+tableNameA+" SET cost = "+cp+" WHERE user = "+"'"+ur+"'"+" and bookkey ="+i);
-					sql.executeUpdate("INSERT INTO "+tableNameC+" VALUES"+"("+id+"'"+ur+"','"+be+"',"+a+","+c+","+tc+")");}
+					sql.executeUpdate("UPDATE "+tableNameA+" SET amount = "+t+" WHERE user_id = "+u_id+" and book_bookkey ="+i);
+					sql.executeUpdate("UPDATE "+tableNameA+" SET cost = "+cp+" WHERE user_id = "+u_id+" and book_bookkey ="+i);
+					sql.executeUpdate("INSERT INTO "+tableNameC+" VALUES"+"("+id+","+a+","+c+","+i+","+u_id+")");}
 			
 				con.close();
 			}
 			catch(SQLException ee){
 				System.out.println(ee);
-				payed_Bean.setResult("¹ºÂòÊ§°Ü£¡");
+				payed_Bean.setResult("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
 				dispatcher.forward(request,response);
 			}	
 		}
-		payed_Bean.setResult("¹ºÂò³É¹¦£¡");
+		payed_Bean.setResult("ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
 		dispatcher.forward(request,response);
 	}
 	public void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{	

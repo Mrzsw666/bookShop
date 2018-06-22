@@ -97,7 +97,8 @@
 
           var child=document.getElementById("btn4");  
           var chcount=document.getElementById("btn5");  
-          var chco=document.getElementById("btn6");  
+          var chco=document.getElementById("btn6");
+          
          adult.onclick=function(){  
               count++;  
               adcount.innerHTML=count; 
@@ -130,15 +131,29 @@
   }   
   function purchase(){
 	  var form2=document.form2;
-	  	form2.action="purchase_Servlet";
-	  	form2.submit();
+	  form2.action="purchase_Servlet";
+	  form2.submit();	
+	  document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block';
   }
   function cart(){
   	var form3=document.form2;
   	form3.action="trolley_Servlet";
   	form3.submit();
+  	document.getElementById('bright').style.display='block';document.getElementById('fade').style.display='bolck';
   }
     </script>
+    
+    <script>
+var strPostFrame="<table style='display:none'>";//
+strPostFrame=strPostFrame+"<tr>";
+strPostFrame=strPostFrame+"   <td >";
+strPostFrame=strPostFrame+"      <iframe name='postFrame' ></iframe>";
+strPostFrame=strPostFrame+"   </td>";
+strPostFrame=strPostFrame+"</tr>";
+strPostFrame=strPostFrame+"</table>";
+document.writeln(strPostFrame);
+  var path ='${ProjectPath}';
+</script>
  </head>
  
  <body>
@@ -169,10 +184,11 @@ if(request.getAttribute("users_Bean")==null){
             <li><a href="inf_modify.jsp">我的信息</a></li>
             <li><a href="order.jsp">我的订单</a></li>
             <li><a href="trolley.jsp">我的购物车</a></li>
+            <li><a href="modify_pwd.jsp">修改密码</a></li>
             <li>                
                 <a href="inf_modify.jsp"><%=username %></a>&nbsp
                  <form action="user_Servlet" method=post style="margin:0px;display:inline;" >
-        	     <input id="out" type="submit" value="退出" name="out" style="height: 30px;background-color: #e3e4e5;line-height: 30px;border:none;">
+        	     <input id="out" type="submit" value="退出" name="out" style="height: 30px;color:#999999;background-color: #e3e4e5;line-height: 30px;border:none;">
                  </form>                
             </li>
             <li><a href="#">您好，</a></li>
@@ -181,7 +197,7 @@ if(request.getAttribute("users_Bean")==null){
             <li>                
                 <a href="#"><%=username %></a>&nbsp
                 <form action="user_Servlet" method="post">        	   
-        	    <input id="out" type="submit" value="退出" name="out" style="height: 30px;background-color: #e3e4e5;line-height: 30px;border:none;">
+        	    <input id="out" type="submit" value="退出" name="out" style="height: 30px;color:#999999;font-size:16px;background-color: #e3e4e5;line-height: 30px;border:none;">
                 </form>                
             </li>
             <li><a href="#">您好，</a></li>
@@ -190,9 +206,9 @@ if(request.getAttribute("users_Bean")==null){
  	</div>
  	<div id="logo">
  		<a href="main.jsp"><img src="./Pic/logo.png" style="float:left;"></a>
-        <form action="search_Servlet" method=post>
-        	<br><input type=text name="search" size=9 style="width:300px;height:40px;font-size:20px;">
-        	<input id="button" type="submit" value="搜索" name="submit" style="width:60px;height:40px;font-size:20px;background-color:#715a52;color:white;">
+        <form action="search_Servlet" method="post">
+        	<br><input type=text name="text" size=9 style="width:300px;height:40px;font-size:20px;">
+        	<input id="search" type="submit" value="搜索" name="search" style="width:60px;height:40px;font-size:20px;background-color:#715a52;color:white;">
         </form>
  	</div>
  	<div id="empty"></div>
@@ -205,24 +221,24 @@ if(request.getAttribute("users_Bean")==null){
             <img src="<%=book[0][8] %>">    
         </div>
         <div id="right">
-            <div class="sml"><%=book[0][2] %></div>
-            <div class="sml"><%=book[0][6] %></div>
+            <div class="sml" style="font-weight:bold;font-size:30px;"><%=book[0][1] %></div>
+            <div class="sml" style="text-align:left;text-indent:30px;"><%=book[0][5] %></div>
 <% if(username==null){ %>   
  <div class="sml" style="width:450px;float:right;">请登录</div>
    <%}else { %>    
         <div class="sml" style="width:450px;float:right;">
-            <form action="" method="post" name="form2">
+            <form action="" method="post" name="form2" target="postFrame">
                 <span class="btngroup">  
                         <button id="btn3" class="button" >-</button>
                         <button id="btn2" class="button" name="ddd"><strong>1</strong></button>  
                         <button id="btn1" class="button"><strong>+</strong></button>
                 </span>
-               <input type="hidden" name="bookname" value="<%=book[0][2]%>" style="margin:0px;display:inline;">  
-               <input type="hidden" name="cost" value="<%=book[0][3]%>" style="margin:0px;display:inline;">  
+               <input type="hidden" name="bookname" value="<%=book[0][1]%>" style="margin:0px;display:inline;">  
+               <input type="hidden" name="cost" value="<%=book[0][2]%>" style="margin:0px;display:inline;">  
                <input type="hidden" name="user" value="<%=username%>" style="margin:0px;display:inline;">  
-              <input type="hidden" name="index" value="<%=book[0][1]%>" style="margin:0px;display:inline;">
+              <input type="hidden" name="index" value="<%=book[0][0]%>" style="margin:0px;display:inline;">
               <input type="hidden" name="amount" value="1" style="margin:0px;display:inline;">
-                <input id="car" type="button" value="加入购物车" name="car" 
+                <input id="car" type="submit" value="加入购物车" name="car" 
                   onclick = "cart()"
                 style="width:120px;height:40px;font-size:20px;background-color:red;color:white;margin-top:60px;border:0px;">
                 <input id="buy" type="button" value="购买" name="buy"                 

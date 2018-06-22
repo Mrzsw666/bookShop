@@ -15,16 +15,12 @@ public class logout_Servlet extends HttpServlet{
 		try{
 		request.setCharacterEncoding("utf8");
 		String weburl=request.getParameter("web");
-		System.out.println(weburl);
-		System.out.println("1");
 		Connection con;
 		PreparedStatement sql;
 		String dataBase="bookshop";
 		String url="jdbc:mysql://127.0.0.1/"+dataBase+"?"+"user=root&password=123456&characterEncoding=utf8&useSSL=true";
 		con=DriverManager.getConnection(url);
-		System.out.println("2");
 		String sqlstr="delete from login;";
-		System.out.println("3");
 		sql=con.prepareStatement(sqlstr);
 		sql.executeUpdate();
 		RequestDispatcher dispatcher=request.getRequestDispatcher(weburl);

@@ -14,7 +14,6 @@ public class user_Servlet extends HttpServlet{
 	}
 	public void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException ,IOException{
 		try{
-		System.out.println("yes");
 	    String weburl=request.getParameter("web");  
 		User_Bean users_Bean=null;
 		users_Bean=(User_Bean)request.getAttribute("users_Bean");
@@ -35,10 +34,13 @@ public class user_Servlet extends HttpServlet{
 			users_Bean.setUserName(null);
 			System.out.println("no");
 		}else{
+		String index = rs.getString(2);
+		int user_id=Integer.parseInt(index);
+		sql=con.prepareStatement("SELECT * FROM "+"user"+" where id="+user_id);
+		rs=sql.executeQuery();
+		rs.last();
 		String userName=rs.getString(2);
-		String is=rs.getString(3);
-		System.out.println(userName);
-		System.out.println(is);
+		String is=rs.getString(7);
 		int isSuper=Integer.parseInt(is);
 		users_Bean.setUserName(userName);
 		users_Bean.setisSuper(isSuper);

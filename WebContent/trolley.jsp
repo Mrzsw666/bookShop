@@ -14,7 +14,7 @@
      #empty{height: 15px;}
      #main{margin: 0px auto;min-height: 410px;width: 1000px;}
      #title{height: 20px;line-height: 20px;}
-     div#title li{float: left;text-decoration: none;list-style:none;font-size: 15px;background-color: green;margin: 0px 8px;}
+     div#title li{float: left;text-decoration: none;list-style:none;font-size: 15px;background-color: #f9f9f9;margin: 0px 8px;}
      div.goods{display: inline-block;width: 1000px;}
      div.goods li{float: left;text-decoration: none;list-style:none;font-size: 20px;height: 100px;line-height: 100px; background-color: white;margin: 0px 8px;font-family: "Adobe Gothic Heiti Std B";}
      #down{height: 100px;}
@@ -116,9 +116,9 @@
  <body>
  	<div id="top"> 		
  		<ul style="background-color:black">		
- 			<li><a href="modify_idea">我的信息</a></li>
+ 			<li><a href="modify_idea.jsp">我的信息</a></li>
             <li><a href="order.jsp">我的订单</a></li>
-
+            <li><a href="modify_pwd.jsp">修改密码</a></li>
             <li>
                  <%
                 String username=null;
@@ -140,7 +140,7 @@
                        </jsp:forward>   
 <%} } %>
                 
-                <a href="modify_idea"><%=username %></a>
+                <a href="modify_idea.jsp"><%=username %></a>
                 
             </li>
  			<li><a href="#">您好，</a></li>
@@ -182,30 +182,29 @@
             
             <input type="checkbox" name="checkbox" >
               <% 
-                float i4=Float.parseFloat(book[i][4]);
-                float i3=Float.parseFloat(book[i][3]);
-                float ian=i4/i3;
-                 
+                float i4=Float.parseFloat(book[i][2]);
+                float i3=Float.parseFloat(book[i][1]);
+                float iii=i4/i3;
                 %>
-                <li style="width:500px;"><%=book[i][2] %></li>
-                <li style="width:100px;color:red;"><%=ian %></li>
+                <li style="width:500px;"><%=book[i][0] %></li>
+                <li style="width:100px;color:red;"><%=iii %></li>
                 <li style="width:100px;">
                     <div class="btngroup" style="margin:40px 20px;"> 
                   
-                    <input type="hidden" name="cost" value="<%=ian %>">
+                    <input type="hidden" name="cost" value="<%=i3 %>">
                     <input type="hidden" name="user" value="<%=username%>">    
-                   <input type="hidden" name="index" value="<%=book[i][5] %>"> 
-                   <input type="hidden" id="num1" name="amount" value="-1">  
+                   <input type="hidden" name="index" value="<%=book[i][3] %>"> 
+                   <input type="hidden" id="num1"  value="-1">  
                    <input id="btn3" type="button" class="button" value="-" >   
                 
-                          <input id="btn2" type="button" class="button" value="<%=book[i][3] %>" >
+                          <input id="btn2" type="button" class="button" name="amount" value="<%=book[i][1] %>" >
                      
                         <input id="btn1" type="button" class="button" value="+" > 
                           
                     </div>
                 </li>
                 
-                <li style="width:100px;color:red;"><%=book[i][4] %></li>
+                <li style="width:100px;color:red;"><%=book[i][2] %></li>
                 <li style="width:120px;">
                     <input id=<%=i %> type="button" value="删除" name="delete" style="width:60px;height:40px;font-size:20px;background-color:white;color:black;border:none;" onclick=function(){this.value="del"; document.all.submit();}>
                 </li>
@@ -213,7 +212,7 @@
         </div>
         <% } %>
         
-        <div style="height:60px;width:950px;margin-bottom:15px;background-color:yellow;">
+        <div style="height:60px;width:950px;margin-bottom:15px;background-color:#f9f9f9;">
          <input type="hidden" name="user" value="<%=username%>">    
                   
             <input id="buy" type="button" value="购买" name="buy" 

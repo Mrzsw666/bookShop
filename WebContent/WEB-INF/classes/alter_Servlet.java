@@ -16,6 +16,7 @@ public class alter_Servlet extends HttpServlet{
 		catch(Exception e){}
 	}
 	public void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+		System.out.println("F");
 		book_Bean alter_Bean=null;
 		RequestDispatcher dispatcher=request.getRequestDispatcher("admin.jsp");
 		try{
@@ -47,54 +48,25 @@ public class alter_Servlet extends HttpServlet{
 		String str=name.substring(name.lastIndexOf("."), name.length()-1);
 		String filename=root+"\\"+UUID.randomUUID().toString()+str;
 		part.write(filename);*/
+		String year=de.substring(de.length()-8,de.length()-6);
+		String month=de.substring(de.length()-6,de.length()-4);
+		String day=de.substring(de.length()-4,de.length());
 		if(de!=null){
-			if(de.length()!=8){
-				alter_Bean.setResult("请输入正确的日期！");
-				dispatcher.forward(request,response);
-				return;} 
-			String year=de.substring(0,4);
-			String month=de.substring(4,6);
-			String day=de.substring(6,8);
-			System.out.println(year);
-			System.out.println(month);
 			int y=Integer.parseInt(year);
-			int m=Integer.parseInt(month);
-			int d=Integer.parseInt(day);
 			Calendar cal=Calendar.getInstance();
 			int tyear=cal.get(Calendar.YEAR);
 			if(y>tyear){
 				alter_Bean.setResult("请输入正确的日期！");
 				dispatcher.forward(request,response);
 				return;} 
-			int n=y%4;
-			switch(m){
-				case 1:if(d<32) break;
-				case 2:if(n==0){
-						if(d<30)
-							break;}
-						else {if(d<29) break;}
-				case 3:if(d<32) break;
-				case 4:if(d<31) break;
-				case 5:if(d<32) break;
-				case 6:if(d<31) break;
-				case 7:if(d<32) break;
-				case 8:if(d<32) break;
-				case 9:if(d<31) break;
-				case 10:if(d<32) break;
-				case 11:if(d<31) break;
-				case 12:if(d<32) break;
-				default:
-					alter_Bean.setResult("请输入正确的日期！");
-	    			dispatcher.forward(request,response);
-	    			return;
-			}
 		}
-			
+		de=year+"-"+month+"-"+day;
 		String filename=null;
 		int id=0;
 		System.out.println(ix.length());
 		if(ix.length()!=13){
 			alter_Bean.setResult("请输入13位索引号！");
+			System.out.println(alter_Bean.getResult());
 			dispatcher.forward(request,response);
 			return;}
 		long a=Long.parseLong(ix);

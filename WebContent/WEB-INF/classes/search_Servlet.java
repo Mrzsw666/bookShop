@@ -27,7 +27,8 @@ public class search_Servlet extends HttpServlet{
 			search_Bean=new book_Bean();
 			request.setAttribute("search_Bean",search_Bean);
 			if(ix==null&&tt==null&&te==null){
-				throw new Exception("ÄúÌîÐ´µÄÐÅÏ¢²»ÍêÕû!");
+				System.out.println("ffff");
+				throw new Exception("ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
 			}
 			Connection con;
 			ResultSet rs;
@@ -50,7 +51,7 @@ public class search_Servlet extends HttpServlet{
 				}
 				search_Bean.setColumnName(columnName);
 				if(!rs.next()){
-					throw new Exception("Î´ÕÒµ½¶ÔÓ¦Êé¼®");
+					throw new Exception("Î´ï¿½Òµï¿½ï¿½ï¿½Ó¦ï¿½é¼®");
 				}
 				rs.last();
 				int rowNumber=rs.getRow();
@@ -82,7 +83,7 @@ public class search_Servlet extends HttpServlet{
 				}
 				search_Bean.setColumnName(columnName);
 				if(!rs.next()){
-					throw new Exception("Î´ÕÒµ½¶ÔÓ¦Êé¼®");
+					throw new Exception("Î´ï¿½Òµï¿½ï¿½ï¿½Ó¦ï¿½é¼®");
 				}
 				rs.last();
 				int rowNumber=rs.getRow();

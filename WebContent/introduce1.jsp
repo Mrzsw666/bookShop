@@ -122,9 +122,10 @@
  	<div id="top"> 		
  		<ul style="background-color:black">	
       <li><a href="#">管理入口</a></li>	
- 			<li><a href="#">我的信息</a></li>
+ 	  <li><a href="#">我的信息</a></li>
       <li><a href="#">我的订单</a></li>
- 			<li><a href="#">我的购物车</a></li>
+ 	  <li><a href="#">我的购物车</a></li>
+ 	  <li><a href="modify_pwd.jsp">修改密码</a></li>
  			<li>
                 <a href="#">请登录！</a><a href="#">免费注册</a>
             </li>           

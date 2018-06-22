@@ -29,23 +29,23 @@ public class purchase_Servlet extends HttpServlet{
 		String dataBase="bookshop";
 		String tableName="book";
 		String tableNameA="bill";
+		String tableNameB="user";
 		String ur=request.getParameter("user");
 		String be=request.getParameter("bookname");
 		String at=request.getParameter("amount");
 		String ct=request.getParameter("cost");
 		String ix=request.getParameter("index");
 		System.out.println(ur);
-		int id=1;
-		int a=Integer.parseInt(ix);
+		int id=0;
+		long a=Long.parseLong(ix);
 		float c=Float.parseFloat(ct);
 		int b=Integer.parseInt(at);
 		if(at==null||at.length()==0){
-			purchase_Bean.setResult("π∫¬Ú ˝¡ø≤ªµ√–°”⁄0£°");
-			dispatcher.forward(request,response);
 			return;
 		}
 	
 		String condition="SELECT*FROM "+tableName+" WHERE bookkey= "+a;
+		String conditionA="SELECT*FROM "+tableNameB+" WHERE username= "+"'"+ur+"'";
 		Connection con;
 		System.out.println(condition);
 		try{
@@ -57,25 +57,44 @@ public class purchase_Servlet extends HttpServlet{
 			String amounto=rs.getString(8);
 			int na=Integer.parseInt(amounto);
 			if(b>na){
-				purchase_Bean.setResult("ø‚¥Ê≤ª◊„£¨π∫¬Ú ß∞‹£°");
+				purchase_Bean.setResult("Â∫ìÂ≠ò‰∏çË∂≥");
 				dispatcher.forward(request,response);
 				return;
 			}
 			else{
+				System.out.println(conditionA);
+				ResultSet rsA=sql.executeQuery(conditionA);
+				System.out.println("/..");
+				rsA.first();
+				String ur_id=rsA.getString(1);
+				int u_id=Integer.parseInt(ur_id);
+				System.out.println(ur_id);
 				na=na-b;
 				float tc=b*c;
 				System.out.println("ddccd");
 				sql.executeUpdate("UPDATE "+tableName+" SET amount = "+na+" WHERE bookkey ="+c);
 				System.out.println("dddd");
-				sql.executeUpdate("INSERT INTO "+tableNameA+" VALUES"+"("+id+",'"+ur+"','"+be+"',"+b+","+tc+","+a+")");}
+				String conditionB="SELECT*FROM "+tableNameA+" WHERE book_bookkey= "+a+" and user_id= "+u_id;
+				ResultSet rsB=sql.executeQuery(conditionB);
+				rsB.first();
+				if(!rsB.next()) {
+				    sql.executeUpdate("INSERT INTO "+tableNameA+" VALUES"+"("+id+","+b+","+c+","+a+","+u_id+")");}
+				else {
+					String am=rsB.getString(2);
+					System.out.println("???"+am);
+					int u_am=Integer.parseInt(am);
+					b=b+u_am;
+					sql.executeUpdate("UPDATE "+tableNameA+" SET amount = "+b+" WHERE book_bookkey ="+a+" and user_id= "+u_id);
+				}
+			}
 			con.close();
-			purchase_Bean.setResult("π∫¬Ú≥…π¶£°");
+			purchase_Bean.setResult("Ë¥≠‰π∞ÊàêÂäü");
 			dispatcher.forward(request,response);
 			return;
 		}
 		catch(SQLException ee){
 			System.out.println(ee);
-			purchase_Bean.setResult("π∫¬Ú ß∞‹£°");
+			purchase_Bean.setResult("Â∫ìÂ≠ò‰∏çË∂≥");
 			dispatcher.forward(request,response);
 			return ;
 		}

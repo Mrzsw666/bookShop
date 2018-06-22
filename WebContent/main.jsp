@@ -57,18 +57,19 @@ if(request.getAttribute("users_Bean")==null){
             <li><a href="modify_idea.jsp">我的信息</a></li>
             <li><a href="order.jsp">我的订单</a></li>
             <li><a href="trolley.jsp">我的购物车</a></li>
+            <li><a href="modify_pwd.jsp">修改密码</a></li>
             <li>              
-                <a href="modify_idea.jsp"><%=username %></a>&nbsp
+                <a href="modify_idea.jsp" style="font-size:16px;"><%=username %></a>&nbsp;
                  <form action="logout_Servlet" method="post" style="margin:0px;display:inline;"> 
                 <input type="hidden" name="web" value="main.jsp" style="margin:0px;display:inline;">      	   
-        	     <input id="out" type="submit" value="退出" name="out" style="display:inline-block;background-color: #e3e4e5;line-height: 30px;border:none;">
+        	     <input id="out" type="submit" value="退出" name="out" style="display:inline-block;color:#999999;font-size:16px;background-color: #e3e4e5;line-height: 30px;border:none;">
                  </form>               
             </li>
             <li><a href="#">您好，</a></li>
             <% }else{ %>
             <li><a href="admin.jsp">管理入口</a></li>       
             <li>                
-                <a href="#"><%=username %></a>&nbsp 
+                <a href="#"><%=username %></a>&nbsp; 
                 <form action="logout_Servlet" method="post" style="float:right;">        	   
         	    <input id="out" type="submit" value="退出" name="out" style="height: 30px;background-color: #e3e4e5;line-height: 30px;border:none;">
                 </form>  
@@ -91,25 +92,25 @@ if(request.getAttribute("users_Bean")==null){
  			<ul>
  				<li style="color:white;background-color:#487a6f">图书分类</li>
  				<form action="search_Servlet" method="post"> 
- 				<li><input type="submit" value="特色书籍" name="tese" class="btn" ></li>
+ 				<li><input type="submit" value="特色书籍" name="type" class="btn" ></li>
  				</form>
  				<form action="search_Servlet" method="post"> 
- 				<li><input type="submit" value="文学馆" name="wenxue" class="btn" ></li>
+ 				<li><input type="submit" value="文学馆" name="type" class="btn" ></li>
  				</form>
  				<form action="search_Servlet" method="post"> 
-                <li><input type="submit" value="教育馆" name="jiaoyu" class="btn" ></li>
+                <li><input type="submit" value="教育馆" name="type" class="btn" ></li>
                 </form>
  				<form action="search_Servlet" method="post"> 
-                <li><input type="submit" value="生活馆" name="shenghuo" class="btn" ></li>
+                <li><input type="submit" value="生活馆" name="type" class="btn" ></li>
                 </form>
  				<form action="search_Servlet" method="post"> 
-                <li><input type="submit" value="艺术馆" name="yishu" class="btn" ></li>
+                <li><input type="submit" value="艺术馆" name="type" class="btn" ></li>
                 </form>
  				<form action="search_Servlet" method="post"> 
-                <li><input type="submit" value="科技馆" name="keji" class="btn" ></li>
+                <li><input type="submit" value="科技馆" name="type" class="btn" ></li>
                 </form>
  				<form action="search_Servlet" method="post"> 
-                <li><input type="submit" value="其他图书" name="qita" class="btn" ></li>
+                <li><input type="submit" value="其他图书" name="type" class="btn" ></li>
                 </form>
  			</ul>
  		</div>
